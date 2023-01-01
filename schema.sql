@@ -1,34 +1,34 @@
 departments
 ----
-dept_no varchar(200) PK
-dept_name varchar(200)
+dept_no VARCHAR(200) PRIMARY KEY
+dept_name VARCHAR(200)
 
 dept_emp
 -----
-emp_no int PK
-dept_no varchar(200) FK >- departments.dept_no
+emp_no INTEGER PRIMARY KEY
+dept_no VARCHAR(200) FK >- departments.dept_no
 
 dept_manager
 -----
-dept_no varchar(200) PK FK >- departments.dept_no
-emp_no int FK >- employees.emp_no
+dept_no VARCHAR(200) PRIMARY KEY FK >- departments.dept_no
+emp_no INTEGER FK >- employees.emp_no
 
 employees
 -----
-emp_no int PK
+emp_no INTEGER PRIMARY KEY
 emp_title_id FK >- titles.title
-birth_date Date
-first_name varchar(200)
-last_name varchar(200)
-sex varchar(200)
-hire_date Date
+birth_date Date NOT NULL
+first_name VARCHAR(200) NOT NULL
+last_name VARCHAR(200) NOT NULL
+sex VARCHAR(200)
+hire_date Date NOT NULL
 
 salaries
 -----
-emp_no int PK FK >- employees.emp_no
-salary int
+emp_no INTEGER PRIMARY KEY FK >- employees.emp_no
+salary INTEGER
 
 titles
 -----
-title_id varchar(200) PK
-title varchar(200)
+title_id VARCHAR(200) PRIMARY KEY
+title VARCHAR(200)
