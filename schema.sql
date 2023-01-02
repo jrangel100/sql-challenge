@@ -1,34 +1,39 @@
-departments
-----
-dept_no VARCHAR(200) PRIMARY KEY
-dept_name VARCHAR(200)
+CREATE TABLE departments (
+    dept_no VARCHAR(200) PRIMARY KEY,
+    dept_name VARCHAR(200)
+);
 
-dept_emp
------
-emp_no INTEGER PRIMARY KEY
-dept_no VARCHAR(200) FK >- departments.dept_no
+CREATE TABLE dept_emp (
+    emp_no INTEGER PRIMARY KEY,
+    dept_no VARCHAR(200),
+    FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
+);
 
-dept_manager
------
-dept_no VARCHAR(200) PRIMARY KEY FK >- departments.dept_no
-emp_no INTEGER FK >- employees.emp_no
+CREATE TABLE dept_manager (
+    dept_no VARCHAR(200) PRIMARY KEY,
+    emp_no INTEGER,
+    FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
+    FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
+);
 
-employees
------
-emp_no INTEGER PRIMARY KEY
-emp_title_id FK >- titles.title
-birth_date Date NOT NULL
-first_name VARCHAR(200) NOT NULL
-last_name VARCHAR(200) NOT NULL
-sex VARCHAR(200)
-hire_date Date NOT NULL
+CREATE TABLE employees (
+    emp_no INTEGER PRIMARY KEY,
+    emp_title_id VARCHAR(200),
+    birth_date DATE NOT NULL,
+    first_name VARCHAR(200) NOT NULL,
+    last_name VARCHAR(200) NOT NULL,
+    sex VARCHAR(200),
+    hire_date DATE NOT NULL,
+    FOREIGN KEY (emp_title_id) REFERENCES titles(title_id)
+);
 
-salaries
------
-emp_no INTEGER PRIMARY KEY FK >- employees.emp_no
-salary INTEGER
+CREATE TABLE salaries (
+    emp_no INTEGER PRIMARY KEY,
+    salary INTEGER,
+    FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
+);
 
-titles
------
-title_id VARCHAR(200) PRIMARY KEY
-title VARCHAR(200)
+CREATE TABLE titles (
+    title_id VARCHAR(200) PRIMARY KEY,
+    title VARCHAR(200)
+);
